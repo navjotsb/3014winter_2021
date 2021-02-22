@@ -1,0 +1,27 @@
+/*
+* PUBLIC FUNCTIONS
+*/
+// using this we print the output
+void initDisplay(void)
+{
+printf("\ninitializing display...\n");
+usleep(2 * config_TL);
+initscr();
+cbreak();
+timeout(TIME_OUT);
+keypad(stdscr, TRUE);
+create_newwin(config_NE, config_ME);
+}
+// we update the generate function using this
+void updateDisplay(void)
+{
+// ENDX = COLS - 1;
+// ENDY = LINES - 1;
+int i, j;
+wclear(win);
+for (i = STARTX; i != config_ME; ++i)
+for (j = STARTY; j != config_NE; ++j)
+if (env[j][i] == live)
+mvwaddch(win, j, i, CELL_CHAR);
+wrefresh(win);
+}
