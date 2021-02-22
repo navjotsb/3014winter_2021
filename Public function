@@ -25,3 +25,49 @@ if (env[j][i] == live)
 mvwaddch(win, j, i, CELL_CHAR);
 wrefresh(win);
 }
+
+
+/*
+* void updateCell(size_t r, size_t c)
+*/
+void updateCell(size_t r, size_t c) {
+cell_t state_cell = env[r][c];
+size_t live_neighbours = countLiveNeighbours(r, c);
+if (state_cell == 0 && (live_neighbours == 3)) {
+update_env[r][c] = state_cell = live;
+} else if (state_cell == 1 && (live_neighbours < 2)) {
+update_env[r][c] = state_cell = dead;
+} else if (state_cell == 1 && (live_neighbours > 3)) {
+update_env[r][c] = state_cell = dead;
+} else {
+update_env[r][c] = state_cell;
+}
+}
+
+/*
+* void* updateCommFunc(void *param)
+*/
+void* updateCommFunc(void *param)
+{
+threadID_t *threadoffsets = (threadID_t *) param;
+//size_t thread_row = threadoffsets->row;
+//size_t thread_col = threadoffsets->col;
+while(1)
+{
+if(reproduction_flag){
+threadID_t *var = param;
+size_t i_0 = var->row;
+size_t j_0 = var->col;
+size_t a = i_0 *config_NC;
+size_t b = j_0 *config_MC;
+After these, compile the code in terminal of host machine as follows,
+for(size_t i =0; i != config_NC; ++i)
+{
+for(size_t j=0; j!= config_MC; ++j)
+{
+updateCell(i+a,j+b);
+}
+}
+}
+}
+}
