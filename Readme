@@ -1,4 +1,4 @@
-e “Game of life” as a pthread implementation in RTOS.
+“Game of life” as a pthread implementation in RTOS.
 we are cloning the following repository as reference.
 https://github.com/takiszourntos/teaching/tree/master/lambton/2020/summer/ese30
 25/week_2/project/proj_pthreads_template
