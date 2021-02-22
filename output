@@ -1,0 +1,29 @@
+/* 
+* Code used to display the output
+*/
+#include "gol_config.h"
+#include <unistd.h>
+#include <ncurses.h>
+#include "display.h"
+/*
+* important variables, defined elsewhere
+*/
+extern cell_t env[config_NE][config_ME];
+extern int STARTX;
+extern int STARTY;
+extern int ENDX;
+extern int ENDY;
+extern WINDOW *win; // to define the window as win
+/*
+* PRIVATE FUNCTIONS
+*/
+// here we define the size of window
+void create_newwin(int height, int width)
+{
+win = newwin(height, width, STARTY, STARTX);
+box(win, 0, 0); /* 0, 0 gives default characters
+* for the vertical and horizontal
+* lines */
+wrefresh(win); /* show that box */
+return;
+}
